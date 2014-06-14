@@ -8,8 +8,9 @@
         <licenseUrl>http://opensource.org/licenses/bsd-license.php</licenseUrl>
         <projectUrl>http://www.codeproject.com/KB/winsdk/LibMinHook.aspx</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>x86/x64 API Hooking Library for Windows</description>
-        <releaseNotes>This release is based on MinHook 1.2.1.</releaseNotes>
+        <description>The Minimalistic x86/x64 API Hooking Library</description>
+        <releaseNotes>This release is based on MinHook 1.2.1.
+https://github.com/RaMMicHaeL/minhook</releaseNotes>
         <copyright>Copyright © 2009 Tsuda Kageyu. All rights reserved.</copyright>
         <language>en-US</language>
         <tags>c++ native windows api hook x86 x64 amd64</tags>

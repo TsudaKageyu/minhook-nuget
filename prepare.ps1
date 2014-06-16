@@ -11,7 +11,7 @@ $ErrorActionPreference = "Stop"
 # MSBuild Settings
 
 Set-Variable -Name Toolsets -Option Constant -Value @(
-    "v90", "v100", "v110", "v110_xp", "v120", "v120_xp"
+    "v90", "v100", "v110", "v120"
 )
 
 Set-Variable -Name Platforms -Option Constant -Value @(
@@ -96,8 +96,8 @@ if ($tempDir -eq "" -or $msbuildExe -eq "") {
 # Locate the necessary files.
 
 $sourceDir = Join-Path $tempDir "source"
-$minhookUrl = "https://github.com/TsudaKageyu/minhook/archive/1.2.1.1.zip"
-$minhookDir = Join-Path $sourceDir "minhook-1.2.1.1"
+$minhookUrl = "https://github.com/TsudaKageyu/minhook/archive/1.2.1B.zip"
+$minhookDir = Join-Path $sourceDir "minhook-1.2.1B"
 
 $workBaseDir  = Join-Path $tempDir "work"
 $libBaseDir   = Join-Path $thisDir "package\lib\native"
@@ -172,9 +172,24 @@ $targetsContent = @"
       <Output TaskParameter="Value" PropertyName="MH_RuntimeLink" />
     </CreateProperty>
 
+    <!-- MH_ToolSet is toolset except for "_xp" suffix. -->
+
+    <CreateProperty Condition="`$(PlatformToolset.ToLower().IndexOf('v90')) == 0" Value="v90">
+      <Output TaskParameter="Value" PropertyName="MH_ToolSet" />
+    </CreateProperty>
+    <CreateProperty Condition="`$(PlatformToolset.ToLower().IndexOf('v100')) == 0" Value="v100">
+      <Output TaskParameter="Value" PropertyName="MH_ToolSet" />
+    </CreateProperty>
+    <CreateProperty Condition="`$(PlatformToolset.ToLower().IndexOf('v110')) == 0" Value="v110">
+      <Output TaskParameter="Value" PropertyName="MH_ToolSet" />
+    </CreateProperty>
+    <CreateProperty Condition="`$(PlatformToolset.ToLower().IndexOf('v120')) == 0" Value="v120">
+      <Output TaskParameter="Value" PropertyName="MH_ToolSet" />
+    </CreateProperty>
+
     <!-- Suffix of lib file like 'win32-v100-mdd' -->
 
-    <CreateProperty Value="`$(Platform.ToLower())-`$(PlatformToolset.ToLower())-`$(MH_RuntimeLink)">
+    <CreateProperty Value="`$(Platform.ToLower())-`$(MH_ToolSet)-`$(MH_RuntimeLink)">
       <Output TaskParameter="Value" PropertyName="MH_LibSuffix" />
     </CreateProperty>
 
@@ -206,6 +221,11 @@ $i = 1
                     $vsVer = $toolset.Substring(1, 2) + ".0"
                 }
 
+                $toolsetSuffix = "";
+                if ([int]$vsVer -ge 11) {
+                    $toolsetSuffix = "_xp";
+                }
+
                 $runtimeLib = "MultiThreaded"
                 if ($config -eq "Debug") {
                     $runtimeLib += "Debug"
@@ -222,7 +242,7 @@ $i = 1
                 # Build TagLib as a DLL.
 
                 $minhookProject = ""
-                $minhookProject = Join-Path $minhookDir "build\libminhook.vcxproj"
+                $minhookProject = Join-Path $minhookDir "build\vc12\libminhook.vcxproj"
 
                 # I couldn't override some propreties of the TagLib project with
                 # MSBuild for some reason. So modify the project file directly.
@@ -245,10 +265,9 @@ $i = 1
 
                 $params  = """$minhookProject"" "
                 $params += "/p:VisualStudioVersion=$vsVer "
-                $params += "/p:PlatformToolset=$toolset "
+                $params += "/p:PlatformToolset=$toolset$toolsetSuffix "
                 $params += "/p:Platform=$platform "
                 $params += "/p:Configuration=$config "
-                $params += "/p:MinimalRebuild=False "
                 $params += "/p:TargetName=libMinHook-$libSuffix "
                 $params += "/m "
                 execute $msbuildExe $params $minhookDir
@@ -268,10 +287,12 @@ $i = 1
 
 # Copy necessary files.
 
-$libSrcDir = Join-Path $minhookDir "lib"
 $libDstDir = Join-Path $libBaseDir "lib"
-
 New-Item -Path $libDstDir -ItemType directory | Out-Null
+
+$libSrcDir = Join-Path $minhookDir "build\VC12\lib\Debug"
+Copy-Item (Join-Path $libSrcDir "*.lib") $libDstDir
+$libSrcDir = Join-Path $minhookDir "build\VC12\lib\Release"
 Copy-Item (Join-Path $libSrcDir "*.lib") $libDstDir
 
 # Finish creating the targets file.

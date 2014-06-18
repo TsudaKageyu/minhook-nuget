@@ -96,8 +96,8 @@ if ($tempDir -eq "" -or $msbuildExe -eq "") {
 # Locate the necessary files.
 
 $sourceDir = Join-Path $tempDir "source"
-$minhookUrl = "https://github.com/TsudaKageyu/minhook/archive/1.2.1B.zip"
-$minhookDir = Join-Path $sourceDir "minhook-1.2.1B"
+$minhookUrl = "https://github.com/TsudaKageyu/minhook/archive/1.2.1D.zip"
+$minhookDir = Join-Path $sourceDir "minhook-1.2.1D"
 
 $workBaseDir  = Join-Path $tempDir "work"
 $libBaseDir   = Join-Path $thisDir "package\lib\native"

@@ -96,8 +96,8 @@ if ($tempDir -eq "" -or $msbuildExe -eq "") {
 # Locate the necessary files.
 
 $sourceDir = Join-Path $tempDir "source"
-$minhookUrl = "https://github.com/TsudaKageyu/minhook/archive/1.2.1D.zip"
-$minhookDir = Join-Path $sourceDir "minhook-1.2.1D"
+$minhookUrl = "https://github.com/RaMMicHaeL/minhook/archive/v1.2.2.zip"
+$minhookDir = Join-Path $sourceDir "minhook-1.2.2"
 
 $workBaseDir  = Join-Path $tempDir "work"
 $libBaseDir   = Join-Path $thisDir "package\lib\native"
@@ -187,9 +187,18 @@ $targetsContent = @"
       <Output TaskParameter="Value" PropertyName="MH_ToolSet" />
     </CreateProperty>
 
-    <!-- Suffix of lib file like 'win32-v100-mdd' -->
+    <!-- MH_Platform is CPU architecture. "x86" or "x64". -->
 
-    <CreateProperty Value="`$(Platform.ToLower())-`$(MH_ToolSet)-`$(MH_RuntimeLink)">
+    <CreateProperty Condition="`$(Platform.ToLower()) == 'win32'" Value="x86">
+      <Output TaskParameter="Value" PropertyName="MH_Platform" />
+    </CreateProperty>
+    <CreateProperty Condition="`$(Platform.ToLower()) == 'x64'" Value="x64">
+      <Output TaskParameter="Value" PropertyName="MH_Platform" />
+    </CreateProperty>
+
+    <!-- Suffix of lib file like 'x86-v100-mdd' -->
+
+    <CreateProperty Value="`$(MH_Platform)-`$(MH_ToolSet)-`$(MH_RuntimeLink)">
       <Output TaskParameter="Value" PropertyName="MH_LibSuffix" />
     </CreateProperty>
 
@@ -212,7 +221,6 @@ $i = 1
                 showMsg "Start Buiding [$toolset, $platform, $runtime, $config] ($i/$count)"
 
                 # MsBuild parameters.
-
                 $vsVer = ""
                 if ($toolset -eq "v90") {
                     $vsVer = "10.0"
@@ -234,7 +242,15 @@ $i = 1
                     $runtimeLib += "DLL"
                 }
 
-                $libSuffix = "$platform-$toolset-$runtime".ToLower()
+                $arch = ""
+                if ($platform -eq "Win32") {
+                    $arch = "x86"
+                }
+                else {
+                    $arch = "x64"
+                }
+
+                $libSuffix = "$arch-$toolset-$runtime".ToLower()
                 if ($config -eq "Debug") {
                     $libSuffix += "d"
                 }
@@ -251,6 +267,9 @@ $i = 1
                 $content = $content -Replace `
                     "<DebugInformationFormat>.*</DebugInformationFormat>", `
                     "<DebugInformationFormat></DebugInformationFormat>"
+                $content = $content -Replace `
+                    "<MinimalRebuild>.*</MinimalRebuild>", `
+                    "<MinimalRebuild>false</MinimalRebuild>"
                 $content = $content -Replace `
                     "<RuntimeLibrary>.*</RuntimeLibrary>", `
                     "<RuntimeLibrary>$runtimeLib</RuntimeLibrary>"

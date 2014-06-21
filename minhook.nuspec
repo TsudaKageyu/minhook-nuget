@@ -2,14 +2,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>minhook</id>
-        <version>1.2.1.2</version>
+        <version>1.2.2</version>
         <title>MinHook</title>
         <authors>Tsuda Kageyu,RaMMicHaeL,et al</authors>
         <licenseUrl>http://opensource.org/licenses/bsd-license.php</licenseUrl>
         <projectUrl>http://www.codeproject.com/KB/winsdk/LibMinHook.aspx</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>The Minimalistic x86/x64 API Hooking Library</description>
-        <releaseNotes>This release is based on MinHook 1.2.1.
+        <releaseNotes>This release is based on MinHook 1.2.2.
 https://github.com/RaMMicHaeL/minhook</releaseNotes>
         <copyright>Copyright © 2009 Tsuda Kageyu. All rights reserved.</copyright>
         <language>en-US</language>
@@ -18,22 +18,6 @@ https://github.com/RaMMicHaeL/minhook</releaseNotes>
     <files>
         <file src="package\build\native\minhook.targets" target="build\native\minhook.targets" />
         <file src="package\lib\native\include\MinHook.h" target="lib\native\include\MinHook.h" />
-        <file src="package\lib\native\lib\libMinHook-win32-v100-md.lib" target="lib\native\lib\libMinHook-win32-v100-md.lib" />
-        <file src="package\lib\native\lib\libMinHook-win32-v100-mdd.lib" target="lib\native\lib\libMinHook-win32-v100-mdd.lib" />
-        <file src="package\lib\native\lib\libMinHook-win32-v100-mt.lib" target="lib\native\lib\libMinHook-win32-v100-mt.lib" />
-        <file src="package\lib\native\lib\libMinHook-win32-v100-mtd.lib" target="lib\native\lib\libMinHook-win32-v100-mtd.lib" />
-        <file src="package\lib\native\lib\libMinHook-win32-v110-md.lib" target="lib\native\lib\libMinHook-win32-v110-md.lib" />
-        <file src="package\lib\native\lib\libMinHook-win32-v110-mdd.lib" target="lib\native\lib\libMinHook-win32-v110-mdd.lib" />
-        <file src="package\lib\native\lib\libMinHook-win32-v110-mt.lib" target="lib\native\lib\libMinHook-win32-v110-mt.lib" />
-        <file src="package\lib\native\lib\libMinHook-win32-v110-mtd.lib" target="lib\native\lib\libMinHook-win32-v110-mtd.lib" />
-        <file src="package\lib\native\lib\libMinHook-win32-v120-md.lib" target="lib\native\lib\libMinHook-win32-v120-md.lib" />
-        <file src="package\lib\native\lib\libMinHook-win32-v120-mdd.lib" target="lib\native\lib\libMinHook-win32-v120-mdd.lib" />
-        <file src="package\lib\native\lib\libMinHook-win32-v120-mt.lib" target="lib\native\lib\libMinHook-win32-v120-mt.lib" />
-        <file src="package\lib\native\lib\libMinHook-win32-v120-mtd.lib" target="lib\native\lib\libMinHook-win32-v120-mtd.lib" />
-        <file src="package\lib\native\lib\libMinHook-win32-v90-md.lib" target="lib\native\lib\libMinHook-win32-v90-md.lib" />
-        <file src="package\lib\native\lib\libMinHook-win32-v90-mdd.lib" target="lib\native\lib\libMinHook-win32-v90-mdd.lib" />
-        <file src="package\lib\native\lib\libMinHook-win32-v90-mt.lib" target="lib\native\lib\libMinHook-win32-v90-mt.lib" />
-        <file src="package\lib\native\lib\libMinHook-win32-v90-mtd.lib" target="lib\native\lib\libMinHook-win32-v90-mtd.lib" />
         <file src="package\lib\native\lib\libMinHook-x64-v100-md.lib" target="lib\native\lib\libMinHook-x64-v100-md.lib" />
         <file src="package\lib\native\lib\libMinHook-x64-v100-mdd.lib" target="lib\native\lib\libMinHook-x64-v100-mdd.lib" />
         <file src="package\lib\native\lib\libMinHook-x64-v100-mt.lib" target="lib\native\lib\libMinHook-x64-v100-mt.lib" />
@@ -50,5 +34,21 @@ https://github.com/RaMMicHaeL/minhook</releaseNotes>
         <file src="package\lib\native\lib\libMinHook-x64-v90-mdd.lib" target="lib\native\lib\libMinHook-x64-v90-mdd.lib" />
         <file src="package\lib\native\lib\libMinHook-x64-v90-mt.lib" target="lib\native\lib\libMinHook-x64-v90-mt.lib" />
         <file src="package\lib\native\lib\libMinHook-x64-v90-mtd.lib" target="lib\native\lib\libMinHook-x64-v90-mtd.lib" />
+        <file src="package\lib\native\lib\libMinHook-x86-v100-md.lib" target="lib\native\lib\libMinHook-x86-v100-md.lib" />
+        <file src="package\lib\native\lib\libMinHook-x86-v100-mdd.lib" target="lib\native\lib\libMinHook-x86-v100-mdd.lib" />
+        <file src="package\lib\native\lib\libMinHook-x86-v100-mt.lib" target="lib\native\lib\libMinHook-x86-v100-mt.lib" />
+        <file src="package\lib\native\lib\libMinHook-x86-v100-mtd.lib" target="lib\native\lib\libMinHook-x86-v100-mtd.lib" />
+        <file src="package\lib\native\lib\libMinHook-x86-v110-md.lib" target="lib\native\lib\libMinHook-x86-v110-md.lib" />
+        <file src="package\lib\native\lib\libMinHook-x86-v110-mdd.lib" target="lib\native\lib\libMinHook-x86-v110-mdd.lib" />
+        <file src="package\lib\native\lib\libMinHook-x86-v110-mt.lib" target="lib\native\lib\libMinHook-x86-v110-mt.lib" />
+        <file src="package\lib\native\lib\libMinHook-x86-v110-mtd.lib" target="lib\native\lib\libMinHook-x86-v110-mtd.lib" />
+        <file src="package\lib\native\lib\libMinHook-x86-v120-md.lib" target="lib\native\lib\libMinHook-x86-v120-md.lib" />
+        <file src="package\lib\native\lib\libMinHook-x86-v120-mdd.lib" target="lib\native\lib\libMinHook-x86-v120-mdd.lib" />
+        <file src="package\lib\native\lib\libMinHook-x86-v120-mt.lib" target="lib\native\lib\libMinHook-x86-v120-mt.lib" />
+        <file src="package\lib\native\lib\libMinHook-x86-v120-mtd.lib" target="lib\native\lib\libMinHook-x86-v120-mtd.lib" />
+        <file src="package\lib\native\lib\libMinHook-x86-v90-md.lib" target="lib\native\lib\libMinHook-x86-v90-md.lib" />
+        <file src="package\lib\native\lib\libMinHook-x86-v90-mdd.lib" target="lib\native\lib\libMinHook-x86-v90-mdd.lib" />
+        <file src="package\lib\native\lib\libMinHook-x86-v90-mt.lib" target="lib\native\lib\libMinHook-x86-v90-mt.lib" />
+        <file src="package\lib\native\lib\libMinHook-x86-v90-mtd.lib" target="lib\native\lib\libMinHook-x86-v90-mtd.lib" />
     </files>
 </package>

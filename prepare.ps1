@@ -1,7 +1,7 @@
 ﻿# This script prepares all the required files for the NuGet package.
 # * .targets file
-# * Header files
-# * DLL and import library files
+# * Header file
+# * Static library files
 
 $ErrorActionPreference = "Stop"
 
@@ -255,7 +255,7 @@ $i = 1
                     $libSuffix += "d"
                 }
 
-                # Build TagLib as a DLL.
+                # Build MinHook as a static library.
 
                 $minhookProject = ""
                 $minhookProject = Join-Path $minhookDir "build\vc12\libminhook.vcxproj"

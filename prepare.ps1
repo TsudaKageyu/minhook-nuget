@@ -54,11 +54,13 @@ function download($url, $dir)
 
 function extract($path)
 {
-    $e = Join-Path (Get-Location) "tools\unzip.exe"
+    $e = Join-Path (Get-Location) "tools\7za.exe"
     $d = Split-Path $path -Parent
     $f = Split-Path $path -Leaf
-    execute $e $f $d
+    execute $e "x ""$f""" $d
 }
+
+# Execute a command.
 
 function execute($exe, $params, $dir)
 {

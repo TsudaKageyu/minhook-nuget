@@ -189,6 +189,15 @@ $targetsContent = @"
       <Output TaskParameter="Value" PropertyName="MH_ToolSet" />
     </CreateProperty>
 
+    <!-- Special Cases: Windows Driver Kit -->
+
+    <CreateProperty Condition="$(PlatformToolset.ToLower()) == 'windowsapplicationfordrivers8.0'" Value="v110">
+      <Output TaskParameter="Value" PropertyName="MH_ToolSet" />
+    </CreateProperty>
+    <CreateProperty Condition="$(PlatformToolset.ToLower()) == 'windowsapplicationfordrivers8.1'" Value="v120">
+      <Output TaskParameter="Value" PropertyName="MH_ToolSet" />
+    </CreateProperty>
+
     <!-- MH_Platform is CPU architecture. "x86" or "x64". -->
 
     <CreateProperty Condition="`$(Platform.ToLower()) == 'win32'" Value="x86">

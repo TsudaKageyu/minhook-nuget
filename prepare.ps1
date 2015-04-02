@@ -80,6 +80,7 @@ $thisDir = Split-Path $script:myInvocation.MyCommand.path -Parent
 
 $tempDir    = ""
 $msbuildExe = ""
+
 $lines = Get-Content (Join-Path $thisDir "prepare.ini") -Encoding UTF8
 foreach ($line in $lines) {
     $s = $line.split("=").Trim()
@@ -90,6 +91,7 @@ foreach ($line in $lines) {
         $msbuildExe = $s[1]
     }
 }
+
 if ($tempDir -eq "" -or $msbuildExe -eq "") {
     showMsg("Error reading prepare.ini!")
     exit

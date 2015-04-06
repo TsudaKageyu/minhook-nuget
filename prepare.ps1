@@ -193,10 +193,10 @@ $targetsContent = @"
 
     <!-- Special Cases: Windows Driver Kit -->
 
-    <CreateProperty Condition="$(PlatformToolset.ToLower()) == 'windowsapplicationfordrivers8.0'" Value="v110">
+    <CreateProperty Condition="`$(PlatformToolset.ToLower()) == 'windowsapplicationfordrivers8.0'" Value="v110">
       <Output TaskParameter="Value" PropertyName="MH_ToolSet" />
     </CreateProperty>
-    <CreateProperty Condition="$(PlatformToolset.ToLower()) == 'windowsapplicationfordrivers8.1'" Value="v120">
+    <CreateProperty Condition="`$(PlatformToolset.ToLower()) == 'windowsapplicationfordrivers8.1'" Value="v120">
       <Output TaskParameter="Value" PropertyName="MH_ToolSet" />
     </CreateProperty>
 

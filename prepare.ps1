@@ -99,9 +99,8 @@ if ($tempDir -eq "" -or $msbuildExe -eq "") {
 
 # Locate the necessary files.
 
-$sourceDir = Join-Path $tempDir "source"
-$minhookUrl = "https://github.com/TsudaKageyu/minhook/archive/v1.3.2-beta2.zip"
-$minhookDir = Join-Path $sourceDir "minhook-1.3.2-beta2"
+$sourceDir  = Join-Path $tempDir "source"
+$minhookDir = Join-Path $thisDir "src\minhook"
 
 $workBaseDir  = Join-Path $tempDir "work"
 $libBaseDir   = Join-Path $thisDir "package\lib\native"
@@ -111,12 +110,6 @@ $buildBaseDir = Join-Path $thisDir "package\build\native"
 
 if (-not (Test-Path $sourceDir)) {
     New-Item -Path $sourceDir -ItemType directory | Out-Null
-}
-
-if (-not (Test-Path $minhookDir)) {
-    showMsg "MinHook source not found. Downloading..."
-    $f = download $minhookUrl $sourceDir
-    extract $f
 }
 
 if (Test-Path $workBaseDir) {

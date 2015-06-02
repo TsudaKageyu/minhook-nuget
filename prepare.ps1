@@ -38,28 +38,6 @@ function showMsg($msg)
     Write-Host "$msg " -ForegroundColor Green
 }
 
-# Download a file from the internet.
-
-function download($url, $dir)
-{
-    $wc = New-Object System.Net.WebClient
-
-    $f = Join-Path $dir (Split-Path $url -Leaf)
-    $wc.DownloadFile($url, $f)
-
-    return $f;
-}
-
-# Extract a ZIP file.
-
-function extract($path)
-{
-    $e = Join-Path (Get-Location) "tools\7za.exe"
-    $d = Split-Path $path -Parent
-    $f = Split-Path $path -Leaf
-    execute $e "x ""$f""" $d
-}
-
 # Execute a command.
 
 function execute($exe, $params, $dir)

@@ -241,8 +241,10 @@ $i = 1
 
                 # Build MinHook as a static library.
 
-                $minhookProject = ""
-                $minhookProject = Join-Path $minhookDir "build\vc12\libminhook.vcxproj"
+                $minhookProjectOld = Join-Path $minhookDir "build\vc12\libminhook.vcxproj"
+                $minhookProject    = Join-Path $minhookDir "build\vc12\libminhook_temp.vcxproj"
+
+                Copy-Item $minhookProjectOld $minhookProject
 
                 # I couldn't override some propreties of the TagLib project with
                 # MSBuild for some reason. So modify the project file directly.

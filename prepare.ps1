@@ -260,7 +260,7 @@ $i = 1
                     "<RuntimeLibrary>.*</RuntimeLibrary>", `
                     "<RuntimeLibrary>$runtimeLib</RuntimeLibrary>"
 
-                if ($toolset -eq "v90") {
+                if (($toolset -eq "v90") -or ($toolset -eq "v100")) {
                     $content = $content -Replace `
                         "<EnableEnhancedInstructionSet>.*</EnableEnhancedInstructionSet>", `
                         ""

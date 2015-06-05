@@ -90,10 +90,6 @@ if (-not (Test-Path $sourceDir)) {
     New-Item -Path $sourceDir -ItemType directory | Out-Null
 }
 
-if (Test-Path $workBaseDir) {
-    Remove-Item -Path $workBaseDir -Recurse -Force
-}
-
 if (Test-Path $libBaseDir) {
     Remove-Item -Path $libBaseDir -Recurse -Force
 }
@@ -109,6 +105,9 @@ $headerDstDir = Join-Path $libBaseDir "include"
 
 New-Item -Path $headerDstDir -ItemType directory | Out-Null
 Copy-Item (Join-Path $headerSrcDir "*.h") $headerDstDir
+
+$libDstDir = Join-Path $libBaseDir "lib"
+New-Item -Path $libDstDir -ItemType directory | Out-Null
 
 # Begin creating the targets file.
 
@@ -204,6 +203,10 @@ $i = 1
             {
                 showMsg "Start Buiding [$toolset, $platform, $runtime, $config] ($i/$count)"
 
+                if (Test-Path $workBaseDir) {
+                    Remove-Item -Path $workBaseDir -Recurse -Force
+                }
+
                 # MsBuild parameters.
                 $vsVer = ""
                 if ($toolset -eq "v90") {
@@ -241,10 +244,9 @@ $i = 1
 
                 # Build MinHook as a static library.
 
-                $minhookProjectOld = Join-Path $minhookDir "build\vc12\libminhook.vcxproj"
-                $minhookProject    = Join-Path $minhookDir "build\vc12\libminhook_temp.vcxproj"
+                Copy-Item -Path $minhookDir -Destination $workBaseDir -Recurse
 
-                Copy-Item $minhookProjectOld $minhookProject
+                $minhookProject = Join-Path $workBaseDir "build\vc12\libminhook.vcxproj"
 
                 # I couldn't override some propreties of the TagLib project with
                 # MSBuild for some reason. So modify the project file directly.
@@ -284,21 +286,22 @@ $i = 1
     <Copy Condition="$condition" SourceFiles="`$(MSBuildThisFileDirectory)$libPath" DestinationFiles="`$(MSBuildThisFileDirectory)..\..\lib\native\lib\libMinHook.lib" />
 
 "@
+
+                # Copy necessary files.
+
+                $libSrcDir = Join-Path $workBaseDir "build\VC12\lib\$config"
+                Copy-Item (Join-Path $libSrcDir "*.lib") $libDstDir
+
+                if (Test-Path $workBaseDir) {
+                    Remove-Item -Path $workBaseDir -Recurse -Force
+                }
+
                 $i++;
             }
         }
     }
 }
 
-# Copy necessary files.
-
-$libDstDir = Join-Path $libBaseDir "lib"
-New-Item -Path $libDstDir -ItemType directory | Out-Null
-
-$libSrcDir = Join-Path $minhookDir "build\VC12\lib\Debug"
-Copy-Item (Join-Path $libSrcDir "*.lib") $libDstDir
-$libSrcDir = Join-Path $minhookDir "build\VC12\lib\Release"
-Copy-Item (Join-Path $libSrcDir "*.lib") $libDstDir
 
 # Finish creating the targets file.
 

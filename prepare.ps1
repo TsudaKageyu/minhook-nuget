@@ -11,7 +11,7 @@ $ErrorActionPreference = "Stop"
 # MSBuild Settings
 
 Set-Variable -Name Toolsets -Option Constant -Value @(
-    "v90", "v100", "v110", "v120"
+    "v90", "v100", "v110", "v120", "v140"
 )
 
 Set-Variable -Name Platforms -Option Constant -Value @(
@@ -227,7 +227,7 @@ $i = 1
 
                 Copy-Item -Path $minhookDir -Destination $workBaseDir -Recurse
 
-                $minhookProject = Join-Path $workBaseDir "build\vc12\libminhook.vcxproj"
+                $minhookProject = Join-Path $workBaseDir "build\vc14\libminhook.vcxproj"
 
                 # I couldn't override some propreties of the TagLib project with
                 # MSBuild for some reason. So modify the project file directly.
@@ -270,7 +270,7 @@ $i = 1
 
                 # Copy necessary files.
 
-                $libSrcDir = Join-Path $workBaseDir "build\VC12\lib\$config"
+                $libSrcDir = Join-Path $workBaseDir "build\vc14\lib\$config"
                 Copy-Item (Join-Path $libSrcDir "*.lib") $libDstDir
 
                 if (Test-Path $workBaseDir) {

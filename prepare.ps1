@@ -66,7 +66,7 @@ foreach ($line in $lines) {
     }
 }
 
-if ($tempDir -eq "" -or $msbuildExe -eq "") {
+if ($msbuildExe -eq "") {
     showMsg("Error reading prepare.ini!")
     exit
 }

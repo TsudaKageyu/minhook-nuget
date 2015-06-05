@@ -56,16 +56,12 @@ $thisDir = Split-Path $script:myInvocation.MyCommand.path -Parent
 
 # Read the settings.
 
-$tempDir    = ""
 $msbuildExe = ""
 
 $lines = Get-Content (Join-Path $thisDir "prepare.ini") -Encoding UTF8
 foreach ($line in $lines) {
     $s = $line.split("=").Trim()
-    if ($s[0] -eq "TempDir") {
-        $tempDir = $s[1]
-    }
-    elseif ($s[0] -eq "MSBuildExe") {
+    if ($s[0] -eq "MSBuildExe") {
         $msbuildExe = $s[1]
     }
 }
@@ -77,18 +73,13 @@ if ($tempDir -eq "" -or $msbuildExe -eq "") {
 
 # Locate the necessary files.
 
-$sourceDir  = Join-Path $tempDir "source"
+$tempDir = Join-Path ([environment]::getenvironmentvariable("TEMP")) "minhook-nuget-build"
+
 $minhookDir = Join-Path $thisDir "src\minhook"
 
 $workBaseDir  = Join-Path $tempDir "work"
 $libBaseDir   = Join-Path $thisDir "package\lib\native"
 $buildBaseDir = Join-Path $thisDir "package\build\native"
-
-# Download and extract the source files if not found.
-
-if (-not (Test-Path $sourceDir)) {
-    New-Item -Path $sourceDir -ItemType directory | Out-Null
-}
 
 if (Test-Path $libBaseDir) {
     Remove-Item -Path $libBaseDir -Recurse -Force

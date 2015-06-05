@@ -182,7 +182,7 @@ $i = 1
         {
             foreach ($config in $Configs)
             {
-                showMsg "Start Buiding [$toolset, $platform, $runtime, $config] ($i/$count)"
+                showMsg "Start Building [$toolset, $platform, $runtime, $config] ($i/$count)"
 
                 if (Test-Path $workBaseDir) {
                     Remove-Item -Path $workBaseDir -Recurse -Force

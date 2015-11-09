@@ -141,6 +141,9 @@ $targetsContent = @"
     <CreateProperty Condition="`$(PlatformToolset.ToLower().IndexOf('v120')) == 0" Value="v120">
       <Output TaskParameter="Value" PropertyName="MH_ToolSet" />
     </CreateProperty>
+    <CreateProperty Condition="`$(PlatformToolset.ToLower().IndexOf('v140')) == 0" Value="v140">
+      <Output TaskParameter="Value" PropertyName="MH_ToolSet" />
+    </CreateProperty>
 
     <!-- Special Cases: Windows Driver Kit -->
 

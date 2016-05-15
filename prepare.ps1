@@ -153,6 +153,9 @@ $targetsContent = @"
     <CreateProperty Condition="`$(PlatformToolset.ToLower()) == 'windowsapplicationfordrivers8.1'" Value="v120">
       <Output TaskParameter="Value" PropertyName="MH_ToolSet" />
     </CreateProperty>
+    <CreateProperty Condition="$(PlatformToolset.ToLower()) == 'windowsapplicationfordrivers10.0'" Value="v140">
+      <Output TaskParameter="Value" PropertyName="MH_ToolSet" />
+    </CreateProperty>
 
     <!-- MH_Platform is CPU architecture. "x86" or "x64". -->
 

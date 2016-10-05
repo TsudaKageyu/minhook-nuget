@@ -302,3 +302,6 @@ New-Item -Path $buildBaseDir -ItemType directory | Out-Null
 [System.IO.File]::WriteAllText( `
     (Join-Path $buildBaseDir "minhook.targets"), $targetsContent)
 
+# Build the package.
+
+NuGet pack (Join-Path $thisDir "minhook.nuspec")

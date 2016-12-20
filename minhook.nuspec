@@ -34,6 +34,10 @@ https://github.com/TsudaKageyu/minhook</releaseNotes>
         <file src="package\lib\native\lib\libMinHook-x64-v140-mdd.lib" target="lib\native\lib\libMinHook-x64-v140-mdd.lib" />
         <file src="package\lib\native\lib\libMinHook-x64-v140-mt.lib" target="lib\native\lib\libMinHook-x64-v140-mt.lib" />
         <file src="package\lib\native\lib\libMinHook-x64-v140-mtd.lib" target="lib\native\lib\libMinHook-x64-v140-mtd.lib" />
+        <file src="package\lib\native\lib\libMinHook-x64-v141-md.lib" target="lib\native\lib\libMinHook-x64-v141-md.lib" />
+        <file src="package\lib\native\lib\libMinHook-x64-v141-mdd.lib" target="lib\native\lib\libMinHook-x64-v141-mdd.lib" />
+        <file src="package\lib\native\lib\libMinHook-x64-v141-mt.lib" target="lib\native\lib\libMinHook-x64-v141-mt.lib" />
+        <file src="package\lib\native\lib\libMinHook-x64-v141-mtd.lib" target="lib\native\lib\libMinHook-x64-v141-mtd.lib" />
         <file src="package\lib\native\lib\libMinHook-x64-v90-md.lib" target="lib\native\lib\libMinHook-x64-v90-md.lib" />
         <file src="package\lib\native\lib\libMinHook-x64-v90-mdd.lib" target="lib\native\lib\libMinHook-x64-v90-mdd.lib" />
         <file src="package\lib\native\lib\libMinHook-x64-v90-mt.lib" target="lib\native\lib\libMinHook-x64-v90-mt.lib" />
@@ -54,6 +58,10 @@ https://github.com/TsudaKageyu/minhook</releaseNotes>
         <file src="package\lib\native\lib\libMinHook-x86-v140-mdd.lib" target="lib\native\lib\libMinHook-x86-v140-mdd.lib" />
         <file src="package\lib\native\lib\libMinHook-x86-v140-mt.lib" target="lib\native\lib\libMinHook-x86-v140-mt.lib" />
         <file src="package\lib\native\lib\libMinHook-x86-v140-mtd.lib" target="lib\native\lib\libMinHook-x86-v140-mtd.lib" />
+        <file src="package\lib\native\lib\libMinHook-x86-v141-md.lib" target="lib\native\lib\libMinHook-x86-v141-md.lib" />
+        <file src="package\lib\native\lib\libMinHook-x86-v141-mdd.lib" target="lib\native\lib\libMinHook-x86-v141-mdd.lib" />
+        <file src="package\lib\native\lib\libMinHook-x86-v141-mt.lib" target="lib\native\lib\libMinHook-x86-v141-mt.lib" />
+        <file src="package\lib\native\lib\libMinHook-x86-v141-mtd.lib" target="lib\native\lib\libMinHook-x86-v141-mtd.lib" />
         <file src="package\lib\native\lib\libMinHook-x86-v90-md.lib" target="lib\native\lib\libMinHook-x86-v90-md.lib" />
         <file src="package\lib\native\lib\libMinHook-x86-v90-mdd.lib" target="lib\native\lib\libMinHook-x86-v90-mdd.lib" />
         <file src="package\lib\native\lib\libMinHook-x86-v90-mt.lib" target="lib\native\lib\libMinHook-x86-v90-mt.lib" />

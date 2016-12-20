@@ -11,7 +11,7 @@ $ErrorActionPreference = "Stop"
 # MSBuild Settings
 
 Set-Variable -Name Toolsets -Option Constant -Value @(
-    "v90", "v100", "v110", "v120", "v140"
+    "v90", "v100", "v110", "v120", "v140", "v141"
 )
 
 Set-Variable -Name Platforms -Option Constant -Value @(
@@ -56,7 +56,7 @@ $thisDir = Split-Path $script:myInvocation.MyCommand.path -Parent
 
 # Locate the necessary files.
 
-$msbuildExe = Join-Path ([Environment]::GetFolderPath('ProgramFilesX86')) "MSBuild\14.0\Bin\MSBuild.exe"
+$msbuildExe = Join-Path ([Environment]::GetFolderPath('ProgramFilesX86')) "Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe"
 
 if (-not (Test-Path $msbuildExe)) {
     showMsg("MsBuild.exe not found!")
@@ -142,6 +142,9 @@ $targetsContent = @"
       <Output TaskParameter="Value" PropertyName="MH_ToolSet" />
     </CreateProperty>
     <CreateProperty Condition="`$(PlatformToolset.ToLower().IndexOf('v140')) == 0" Value="v140">
+      <Output TaskParameter="Value" PropertyName="MH_ToolSet" />
+    </CreateProperty>
+    <CreateProperty Condition="`$(PlatformToolset.ToLower().IndexOf('v141')) == 0" Value="v141">
       <Output TaskParameter="Value" PropertyName="MH_ToolSet" />
     </CreateProperty>
 
@@ -233,7 +236,7 @@ $i = 1
 
                 Copy-Item -Path $minhookDir -Destination $workBaseDir -Recurse
 
-                $minhookProject = Join-Path $workBaseDir "build\vc14\libminhook.vcxproj"
+                $minhookProject = Join-Path $workBaseDir "build\vc15\libminhook.vcxproj"
 
                 # I couldn't override some propreties of the TagLib project with
                 # MSBuild for some reason. So modify the project file directly.
@@ -276,7 +279,7 @@ $i = 1
 
                 # Copy necessary files.
 
-                $libSrcDir = Join-Path $workBaseDir "build\vc14\lib\$config"
+                $libSrcDir = Join-Path $workBaseDir "build\vc15\lib\$config"
                 Copy-Item (Join-Path $libSrcDir "*.lib") $libDstDir
 
                 if (Test-Path $workBaseDir) {
